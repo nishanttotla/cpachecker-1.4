@@ -6,6 +6,7 @@ Develop and Contribute:     doc/Developing.txt
 
 More details can be found in doc/*.txt
 
+This codebase builds on top of v1.4 (stable) of CPAChecker, obtained from https://svn.sosy-lab.org/software/cpachecker/tags/cpachecker-1.4/ with an Apache 2.0 license. It is an implementation for extending the Impact algorithm to handle heaps, as part of an oracle-guided heap invariant synthesis algorithm.
 
 Prepare Programs for Verification by CPAchecker
 -----------------------------------------------
