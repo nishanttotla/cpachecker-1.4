@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE benchmark SYSTEM "benchmark.dtd">
+<benchmark tool="cpachecker" timelimit="900" hardtimelimit="1000" memlimit="15000" cpuCores="2">
+  <option name="-heap">13000M</option>
+  <option name="-noout"/>
+  <option name="-disable-java-assertions"/>
+
+  <propertyfile>${sourcefile_path}/ALL.prp</propertyfile>
+
+  <sourcefiles name="ControlFlowInteger">
+    <includesfile>../programs/benchmarks/ControlFlowInteger.set</includesfile>
+  </sourcefiles>
+  <sourcefiles name="DeviceDrivers64">
+    <includesfile>../programs/benchmarks/DeviceDrivers64.set</includesfile>
+    <option name="-setprop">cpa.predicate.handlePointerAliasing=false</option>
+    <option name="-64"/>
+  </sourcefiles>
+  <sourcefiles name="ECA">
+    <includesfile>../programs/benchmarks/ECA.set</includesfile>
+  </sourcefiles>
+  <sourcefiles name="HeapManipulation">
+    <includesfile>../programs/benchmarks/HeapManipulation.set</includesfile>
+  </sourcefiles>
+  <sourcefiles name="Loops">
+    <includesfile>../programs/benchmarks/Loops.set</includesfile>
+  </sourcefiles>
+  <sourcefiles name="ProductLines">
+    <includesfile>../programs/benchmarks/ProductLines.set</includesfile>
+  </sourcefiles>
+  <sourcefiles name="Sequentialized">
+    <includesfile>../programs/benchmarks/Sequentialized.set</includesfile>
+  </sourcefiles>
+  <sourcefiles name="Simple">
+    <includesfile>../programs/benchmarks/Simple.set</includesfile>
+    <option name="-setprop">cpa.predicate.handlePointerAliasing=false</option>
+  </sourcefiles>
+
+  <rundefinition>
+    <option name="-bmc-induction"/>
+    <!-- TODO: use these options?
+    <option name="-setprop">cfa.useMultiEdges=true</option>
+    <option name="-setprop">bmc.addInvariantsByInduction=false</option>
+    -->
+  </rundefinition>
+
+  <columns>
+    <column title="total">time for CPAchecker</column>
+    <column title="cut points">cut points for induction</column>
+    <column title="formula creation">Time for induction formula creation</column>
+    <column title="induction check">Time for induction check</column>
+    <column title="invariant creation">Time for invariant generation</column>
+  </columns>
+</benchmark>
