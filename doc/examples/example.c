@@ -1,3 +1,8 @@
+struct node {
+  int data;
+  struct node* next;
+};
+
 int main() {
   int i = 0;
   int a = 0;
