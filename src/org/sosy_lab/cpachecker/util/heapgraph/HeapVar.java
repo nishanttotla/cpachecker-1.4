@@ -23,20 +23,12 @@
  */
 package org.sosy_lab.cpachecker.util.heapgraph;
 
-import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
+import org.sosy_lab.cpachecker.cfa.ast.c.CSimpleDeclaration;
 
-// Define node for a heap graph
-public class Node {
-  public BooleanFormula predicate;
-  boolean isRoot;
-  boolean summary;
+public class HeapVar {
+  CSimpleDeclaration decl;
 
-  public Node(BooleanFormula predicate) {
-    this.predicate = predicate;
-  }
-
-  public Node(BooleanFormula predicate, boolean isRoot) {
-    this.predicate = predicate;
-    this.isRoot = isRoot;
+  public HeapVar(CSimpleDeclaration pDst) {
+    this.decl =  pDst;
   }
 }
