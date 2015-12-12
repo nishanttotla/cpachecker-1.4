@@ -38,6 +38,7 @@ import org.sosy_lab.cpachecker.cfa.model.CFANode;
 import org.sosy_lab.cpachecker.core.defaults.AbstractSingleWrapperState;
 import org.sosy_lab.cpachecker.core.interfaces.AbstractState;
 import org.sosy_lab.cpachecker.util.AbstractStates;
+import org.sosy_lab.cpachecker.util.heapgraph.Graph;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormulaManager;
 
@@ -59,6 +60,8 @@ class Vertex extends AbstractSingleWrapperState {
 
   private static int nextId = 0;
   private final int id = nextId++;
+
+  private Graph heapGraph; // heap graph associated with this vertex
 
   private final Vertex parent;
   private final BooleanFormulaManager bfmgr;
@@ -86,6 +89,13 @@ class Vertex extends AbstractSingleWrapperState {
     stateFormula = checkNotNull(pStateFormula);
   }
 
+  public Graph getHeap() {
+    return heapGraph;
+  }
+
+  public void setHeap(Graph graph) {
+    this.heapGraph = graph;
+  }
 
   public BooleanFormula getStateFormula() {
     return stateFormula;
