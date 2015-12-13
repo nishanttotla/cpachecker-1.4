@@ -57,6 +57,7 @@ import org.sosy_lab.cpachecker.core.interfaces.StatisticsProvider;
 import org.sosy_lab.cpachecker.core.reachedset.ReachedSet;
 import org.sosy_lab.cpachecker.exceptions.CPAException;
 import org.sosy_lab.cpachecker.exceptions.CPATransferException;
+import org.sosy_lab.cpachecker.util.heapgraph.Graph;
 import org.sosy_lab.cpachecker.util.predicates.Solver;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.PathFormulaManager;
@@ -144,7 +145,9 @@ public class ImpactAlgorithm implements Algorithm, StatisticsProvider {
   }
 
   public AbstractState getInitialState(CFANode location) {
-    return new Vertex(bfmgr, bfmgr.makeBoolean(true), cpa.getInitialState(location));
+    Vertex init = new Vertex(bfmgr, bfmgr.makeBoolean(true), cpa.getInitialState(location));
+    init.setHeap(Graph.universalHeap());
+    return init;
   }
 
   public Precision getInitialPrecision(CFANode location) {
@@ -169,6 +172,8 @@ public class ImpactAlgorithm implements Algorithm, StatisticsProvider {
       CFANode loc = extractLocation(v);
       for (CFAEdge edge : leavingEdges(loc)) {
 
+        // System.out.println("CPA class is " + cpa.getClass());
+        // System.out.println(edge.getEdgeType() + " " + edge.getLineNumber() + ": " + edge.getCode());
         Collection<? extends AbstractState> successors = cpa.getTransferRelation().getAbstractSuccessorsForEdge(predecessor, precision, edge);
         if (successors.isEmpty()) {
           // edge not feasible
