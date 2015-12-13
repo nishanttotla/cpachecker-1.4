@@ -63,14 +63,14 @@ public class Graph {
     this.isEmpty = false;
   }
 
-  public Graph universalHeap() {
+  public static Graph universalHeap() {
     Graph univ = new Graph();
     univ.isUniversal = true;
     univ.isEmpty = false;
     return univ;
   }
 
-  public Graph emptyHeap() {
+  public static Graph emptyHeap() {
     Graph empt = new Graph();
     empt.isEmpty = true;
     empt.isUniversal = false;

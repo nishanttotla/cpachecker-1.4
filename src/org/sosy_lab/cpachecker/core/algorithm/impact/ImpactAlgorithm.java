@@ -178,12 +178,14 @@ public class ImpactAlgorithm implements Algorithm, StatisticsProvider {
         if (successors.isEmpty()) {
           // edge not feasible
           // create fake vertex
-          new Vertex(bfmgr, v, bfmgr.makeBoolean(false), null);
+          Vertex fakeVertex = new Vertex(bfmgr, v, bfmgr.makeBoolean(false), null);
+          fakeVertex.setHeap(Graph.emptyHeap());
           continue;
         }
         assert successors.size() == 1;
 
         Vertex w = new Vertex(bfmgr, v, bfmgr.makeBoolean(true), Iterables.getOnlyElement(successors));
+        w.setHeap(Graph.universalHeap());
         reached.add(w, precision);
         reached.popFromWaitlist(); // we don't use the waitlist
       }
