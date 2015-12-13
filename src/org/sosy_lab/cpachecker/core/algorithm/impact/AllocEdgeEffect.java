@@ -23,42 +23,25 @@
  */
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
+import org.sosy_lab.cpachecker.cfa.ast.c.CFunctionCallAssignmentStatement;
+import org.sosy_lab.cpachecker.cfa.ast.c.CLeftHandSide;
+import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
 import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
-import org.sosy_lab.cpachecker.cfa.model.CFAEdgeType;
-import org.sosy_lab.cpachecker.util.heapgraph.Graph;
 
-/*
-  Abstract class, starting to define edge effects (posts)
- */
-public abstract class EdgeEffect {
-  enum OpType {
-    LOAD,
-    STORE,
-    COPY,
-    DATA,
-    ALLOC
-  }
+public class AllocEdgeEffect extends SimpleEdgeEffect {
+  private String heapVar;
 
-  OpType opType;
+  public AllocEdgeEffect(CFAEdge pEdge) {
+    super(pEdge);
 
-  public EdgeEffect() {
-
-  }
-
-  // instantiate appropriate edge effect depending on operation
-  public static EdgeEffect create(CFAEdge pEdge) {
-    CFAEdgeType edgeType = pEdge.getEdgeType();
-
-    // make cases for each type of edge and create appropriate EdgeEffect object
-    return null;
-  }
-
-  private static EdgeEffect createStatementEffect(CStatementEdge pEdge) {
-    return null;
-  }
-
-  public Graph apply(Vertex v, Graph pre) {
-    return null;
+    CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
+    if(cstmt instanceof CFunctionCallAssignmentStatement) {
+      CFunctionCallAssignmentStatement cfAssgn = (CFunctionCallAssignmentStatement)cstmt;
+      CLeftHandSide lhs = cfAssgn.getLeftHandSide();
+      heapVar = "";// StmtUtil.getVarName(lhs);
+    } else {
+      assert(false); // if this happens, something went wrong
+    }
   }
 }
