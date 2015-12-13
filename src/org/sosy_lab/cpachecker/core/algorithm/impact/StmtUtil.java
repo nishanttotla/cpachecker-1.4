@@ -23,25 +23,27 @@
  */
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
-import org.sosy_lab.cpachecker.cfa.ast.c.CFunctionCallAssignmentStatement;
-import org.sosy_lab.cpachecker.cfa.ast.c.CLeftHandSide;
-import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
-import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
-import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
+import org.sosy_lab.cpachecker.cfa.ast.c.CExpression;
+import org.sosy_lab.cpachecker.cfa.ast.c.CFieldReference;
+import org.sosy_lab.cpachecker.cfa.ast.c.CFunctionCallExpression;
+import org.sosy_lab.cpachecker.cfa.ast.c.CFunctionDeclaration;
+import org.sosy_lab.cpachecker.cfa.ast.c.CIdExpression;
+import org.sosy_lab.cpachecker.cfa.ast.c.CIntegerLiteralExpression;
 
-public class AllocSimpleEdgeEffect extends SimpleEdgeEffect {
-  private String heapVar;
+/*
+  A bunch of utilities for manipulating heap graphs
+ */
+public class StmtUtil {
+  // get function name from call
+  public static String getFunction(CFunctionCallExpression pRightHandSide) {
+    CFunctionDeclaration decl = pRightHandSide.getDeclaration();
 
-  public AllocSimpleEdgeEffect(CFAEdge pEdge) {
-    super(pEdge);
+    CExpression nameExpr = pRightHandSide.getFunctionNameExpression();
+    return nameExpr.toString();
+  }
 
-    CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
-    if(cstmt instanceof CFunctionCallAssignmentStatement) {
-      CFunctionCallAssignmentStatement cfAssgn = (CFunctionCallAssignmentStatement)cstmt;
-      CLeftHandSide lhs = cfAssgn.getLeftHandSide();
-      heapVar = StmtUtil.getVariableName(lhs);
-    } else {
-      assert(false); // if this happens, something went wrong
-    }
+  // get
+  public static String getVariableName(CExpression expr) {
+    return expr.toString();
   }
 }
