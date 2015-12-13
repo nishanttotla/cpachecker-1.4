@@ -29,10 +29,10 @@ import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
 import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 
-public class AllocEdgeEffect extends SimpleEdgeEffect {
+public class AllocSimpleEdgeEffect extends SimpleEdgeEffect {
   private String heapVar;
 
-  public AllocEdgeEffect(CFAEdge pEdge) {
+  public AllocSimpleEdgeEffect(CFAEdge pEdge) {
     super(pEdge);
 
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
