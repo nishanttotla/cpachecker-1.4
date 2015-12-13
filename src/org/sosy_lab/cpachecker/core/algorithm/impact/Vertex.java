@@ -61,14 +61,13 @@ class Vertex extends AbstractSingleWrapperState {
   private static int nextId = 0;
   private final int id = nextId++;
 
-  private Graph heapGraph; // heap graph associated with this vertex
-
   private final Vertex parent;
   private final BooleanFormulaManager bfmgr;
 
   private final List<Vertex> children = new ArrayList<>(2);
 
   private BooleanFormula stateFormula;
+  private Graph heapGraph; // heap graph associated with this vertex
 
   private Vertex coveredBy = null;
   private List<Vertex> coveredNodes = new ArrayList<>(0);

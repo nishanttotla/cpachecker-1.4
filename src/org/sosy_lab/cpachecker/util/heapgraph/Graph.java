@@ -24,7 +24,12 @@
 package org.sosy_lab.cpachecker.util.heapgraph;
 
 import java.util.HashMap;
+import java.util.Set;
+import java.util.TreeSet;
 
+/*
+  Formal definition of graph is here: https://cloud.githubusercontent.com/assets/1872537/11579439/ec22840e-99e2-11e5-8cdb-36f17e3f9d09.png
+ */
 public class Graph {
   // Defining values in three-valued logic
   public enum ThreeVal {
@@ -33,7 +38,23 @@ public class Graph {
     MAYBE
   }
 
-  public Graph() {
+  private class HVEdge {
+    public Node node;
+    public HeapVar var;
 
+    public HVEdge(Node node, HeapVar var) {
+      this.node = node;
+      this.var = var;
+    }
+  }
+
+  public Set<Node> nodes;
+  public HashMap<Edge, ThreeVal> edges; // E: N x Fields x N -> B3
+  public HashMap<HVEdge, ThreeVal> heapVarLabeling; // V: N x Vars_h -> B3
+
+  public Graph() {
+    this.nodes = new TreeSet<>();
+    this.edges = new HashMap<>();
+    this.heapVarLabeling = new HashMap<>();
   }
 }

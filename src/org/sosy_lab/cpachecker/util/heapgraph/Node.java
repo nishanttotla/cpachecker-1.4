@@ -23,20 +23,35 @@
  */
 package org.sosy_lab.cpachecker.util.heapgraph;
 
+import org.sosy_lab.cpachecker.util.heapgraph.Graph.ThreeVal;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 
 // Define node for a heap graph
 public class Node {
   public BooleanFormula predicate;
+  public ThreeVal predLabel;
+
   boolean isRoot;
   boolean summary;
 
   public Node(BooleanFormula predicate) {
     this.predicate = predicate;
+    this.summary = false;
+    this.predLabel = ThreeVal.MAYBE;
   }
 
   public Node(BooleanFormula predicate, boolean isRoot) {
     this.predicate = predicate;
     this.isRoot = isRoot;
+    this.summary = false;
+    this.predLabel = ThreeVal.MAYBE;
+  }
+
+  public void setAsSummary() {
+    this.summary = true;
+  }
+
+  public void setAsNotSummary() {
+    this.summary = false;
   }
 }
