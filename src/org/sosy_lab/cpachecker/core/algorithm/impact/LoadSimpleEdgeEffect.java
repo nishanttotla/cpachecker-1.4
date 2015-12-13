@@ -23,14 +23,19 @@
  */
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
+import org.sosy_lab.cpachecker.cfa.ast.c.CExpression;
+import org.sosy_lab.cpachecker.cfa.ast.c.CFunctionCallAssignmentStatement;
+import org.sosy_lab.cpachecker.cfa.ast.c.CLeftHandSide;
+import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
+import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaManagerView;
 
-public class CopySimpleEdgeEffect extends SimpleEdgeEffect {
+public class LoadSimpleEdgeEffect extends SimpleEdgeEffect {
   String varLhs;
   String varRhs;
 
-  public CopySimpleEdgeEffect(CFAEdge pEdge) {
-    super(pEdge);
+  public LoadSimpleEdgeEffect(CStatementEdge edge, CLeftHandSide pLeftHandSide, CExpression pRightHandSide) {
+    super(edge);
   }
 }
