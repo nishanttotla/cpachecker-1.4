@@ -23,6 +23,9 @@
  */
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
+import org.sosy_lab.cpachecker.cfa.ast.c.CExpressionAssignmentStatement;
+import org.sosy_lab.cpachecker.cfa.ast.c.CFunctionCallAssignmentStatement;
+import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
 import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdgeType;
@@ -55,6 +58,31 @@ public abstract class EdgeEffect {
   }
 
   private static EdgeEffect createStatementEffect(CStatementEdge pEdge) {
+    CStatement stmt = pEdge.getStatement();
+
+    // TODO case for COPY still missing
+    if(stmt instanceof CFunctionCallAssignmentStatement) {
+      CFunctionCallAssignmentStatement funcAssgn = (CFunctionCallAssignmentStatement)stmt;
+      String funcName = StmtUtil.getFunction(funcAssgn.getRightHandSide());
+      if(funcName == "malloc") {
+        return new AllocSimpleEdgeEffect(pEdge);
+      }
+    } else if(stmt instanceof CExpressionAssignmentStatement) {
+      CExpressionAssignmentStatement assgn = (CExpressionAssignmentStatement)stmt;
+      if(true) {
+        // load (rhs dereference)
+        return new LoadSimpleEdgeEffect(pEdge, assgn.getLeftHandSide(), assgn.getRightHandSide());
+      } else if(true) {
+        // store (lhs dereference)
+        return new StoreSimpleEdgeEffect(pEdge, assgn.getLeftHandSide(), assgn.getRightHandSide());
+      } else {
+        // data op
+        return new DataOpSimpleEdgeEffect(pEdge);
+      }
+    } else {
+      System.out.println("Unknown statement of class: " + stmt.getClass());
+      assert(false);
+    }
     return null;
   }
 
