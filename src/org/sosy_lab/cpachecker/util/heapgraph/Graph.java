@@ -52,9 +52,28 @@ public class Graph {
   public HashMap<Edge, ThreeVal> edges; // E: N x Fields x N -> B3
   public HashMap<HVEdge, ThreeVal> heapVarLabeling; // V: N x Vars_h -> B3
 
+  private boolean isUniversal; // heap is universal - symbolic
+  private boolean isEmpty; // heap is empty - symbolic
+
   public Graph() {
     this.nodes = new TreeSet<>();
     this.edges = new HashMap<>();
     this.heapVarLabeling = new HashMap<>();
+    this.isUniversal = false;
+    this.isEmpty = false;
+  }
+
+  public Graph universalHeap() {
+    Graph univ = new Graph();
+    univ.isUniversal = true;
+    univ.isEmpty = false;
+    return univ;
+  }
+
+  public Graph emptyHeap() {
+    Graph empt = new Graph();
+    empt.isEmpty = true;
+    empt.isUniversal = false;
+    return empt;
   }
 }
