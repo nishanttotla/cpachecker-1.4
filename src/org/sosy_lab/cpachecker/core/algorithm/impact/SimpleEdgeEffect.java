@@ -23,43 +23,16 @@
  */
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
-import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
-import org.sosy_lab.cpachecker.cfa.model.CFAEdgeType;
-import org.sosy_lab.cpachecker.util.heapgraph.Graph;
 
 /*
   Abstract class, starting to define edge effects (posts)
  */
-public abstract class EdgeEffect {
-  enum OpType {
-    LOAD,
-    STORE,
-    COPY,
-    DATA,
-    ALLOC
-  }
 
-  OpType opType;
+public abstract class SimpleEdgeEffect extends EdgeEffect {
+  protected CFAEdge edge;
 
-  public EdgeEffect() {
-
-  }
-
-  // instantiate appropriate edge effect depending on operation
-  public static EdgeEffect create(CFAEdge pEdge) {
-    CFAEdgeType edgeType = pEdge.getEdgeType();
-
-    // make cases for each type of edge and create appropriate EdgeEffect object
-
-    return null;
-  }
-
-  private static EdgeEffect createStatementEffect(CStatementEdge pEdge) {
-    return null;
-  }
-
-  public Graph apply(Vertex v, Graph pre) {
-    return null;
+  public SimpleEdgeEffect(CFAEdge pEdge) {
+    this.edge = pEdge;
   }
 }
