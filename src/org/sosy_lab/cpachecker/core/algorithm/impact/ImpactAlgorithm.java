@@ -172,8 +172,7 @@ public class ImpactAlgorithm implements Algorithm, StatisticsProvider {
       CFANode loc = extractLocation(v);
       for (CFAEdge edge : leavingEdges(loc)) {
 
-        // System.out.println("CPA class is " + cpa.getClass());
-        // System.out.println(edge.getEdgeType() + " " + edge.getLineNumber() + ": " + edge.getCode());
+        System.out.println(edge.getEdgeType() + " " + edge.getLineNumber() + ": " + edge.getCode());
         Collection<? extends AbstractState> successors = cpa.getTransferRelation().getAbstractSuccessorsForEdge(predecessor, precision, edge);
         if (successors.isEmpty()) {
           // edge not feasible

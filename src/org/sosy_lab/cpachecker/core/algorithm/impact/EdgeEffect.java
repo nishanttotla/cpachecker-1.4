@@ -53,14 +53,14 @@ public abstract class EdgeEffect {
   // instantiate appropriate edge effect depending on operation
   public static EdgeEffect create(CFAEdge pEdge) {
     CFAEdgeType edgeType = pEdge.getEdgeType();
-    // TODO make cases for each type of edge and create appropriate EdgeEffect object
-    if(type == CFAEdgeType.AssumeEdge) {
+    // TODO need to handle more cases
+    if(edgeType == CFAEdgeType.AssumeEdge) {
       return new PassthroughSimpleEdgeEffect(pEdge);
-    } else if(type == CFAEdgeType.BlankEdge) {
+    } else if(edgeType == CFAEdgeType.BlankEdge) {
       return new PassthroughSimpleEdgeEffect(pEdge);
-    } else if(type == CFAEdgeType.DeclarationEdge) {
+    } else if(edgeType == CFAEdgeType.DeclarationEdge) {
       return new PassthroughSimpleEdgeEffect(pEdge);
-    } else if(type == CFAEdgeType.StatementEdge) {
+    } else if(edgeType == CFAEdgeType.StatementEdge) {
       return createStatementEffect((CStatementEdge)pEdge);
     } else {
       System.out.println("Unknown edge type");
@@ -69,6 +69,7 @@ public abstract class EdgeEffect {
     return null;
   }
 
+  // for a statement that does heap manipulation, create the appropriate effect
   private static EdgeEffect createStatementEffect(CStatementEdge pEdge) {
     CStatement stmt = pEdge.getStatement();
 
