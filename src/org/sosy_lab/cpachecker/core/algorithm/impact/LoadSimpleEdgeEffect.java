@@ -36,4 +36,9 @@ public class LoadSimpleEdgeEffect extends SimpleEdgeEffect {
   public LoadSimpleEdgeEffect(CStatementEdge edge, CLeftHandSide pLeftHandSide, CExpression pRightHandSide) {
     super(edge);
   }
+
+  @Override
+  public Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF) {
+    return new Footprint(pF, pBfmgr.makeVariable(varLhs));
+  }
 }

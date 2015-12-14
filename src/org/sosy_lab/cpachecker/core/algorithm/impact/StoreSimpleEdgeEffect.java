@@ -39,7 +39,13 @@ public class StoreSimpleEdgeEffect extends SimpleEdgeEffect {
     super(pEdge);
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CExpression) {
-
+      // TODO fill this space
     }
+  }
+
+  @Override
+  public Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF) {
+    Dereference d = new Dereference(destVar, fieldName);
+    return new Footprint(pF, d);
   }
 }

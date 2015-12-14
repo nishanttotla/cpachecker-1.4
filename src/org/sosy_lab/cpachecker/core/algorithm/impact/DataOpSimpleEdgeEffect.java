@@ -34,4 +34,9 @@ public class DataOpSimpleEdgeEffect extends SimpleEdgeEffect {
   public DataOpSimpleEdgeEffect(CFAEdge pEdge) {
     super(pEdge);
   }
+
+  @Override
+  public Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF) {
+    return pF;
+  }
 }

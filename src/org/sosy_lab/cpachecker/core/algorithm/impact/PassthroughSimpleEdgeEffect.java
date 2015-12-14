@@ -34,4 +34,9 @@ public class PassthroughSimpleEdgeEffect extends SimpleEdgeEffect {
   public PassthroughSimpleEdgeEffect(CFAEdge pEdge) {
     super(pEdge);
   }
+
+  @Override
+  public Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF) {
+    return pF;
+  }
 }
