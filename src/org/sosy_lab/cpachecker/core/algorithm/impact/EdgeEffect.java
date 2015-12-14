@@ -30,6 +30,7 @@ import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdgeType;
 import org.sosy_lab.cpachecker.util.heapgraph.Graph;
+import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaManagerView;
 
 /*
   Abstract class, starting to define edge effects (posts)
@@ -89,4 +90,6 @@ public abstract class EdgeEffect {
   public Graph apply(Vertex v, Graph pre) {
     return null;
   }
+
+  public abstract Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF);
 }
