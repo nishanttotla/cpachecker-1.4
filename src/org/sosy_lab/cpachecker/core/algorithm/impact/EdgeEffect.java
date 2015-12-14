@@ -53,9 +53,19 @@ public abstract class EdgeEffect {
   // instantiate appropriate edge effect depending on operation
   public static EdgeEffect create(CFAEdge pEdge) {
     CFAEdgeType edgeType = pEdge.getEdgeType();
-
     // TODO make cases for each type of edge and create appropriate EdgeEffect object
-
+    if(type == CFAEdgeType.AssumeEdge) {
+      return new PassthroughSimpleEdgeEffect(pEdge);
+    } else if(type == CFAEdgeType.BlankEdge) {
+      return new PassthroughSimpleEdgeEffect(pEdge);
+    } else if(type == CFAEdgeType.DeclarationEdge) {
+      return new PassthroughSimpleEdgeEffect(pEdge);
+    } else if(type == CFAEdgeType.StatementEdge) {
+      return createStatementEffect((CStatementEdge)pEdge);
+    } else {
+      System.out.println("Unknown edge type");
+      assert(false);
+    }
     return null;
   }
 
