@@ -54,7 +54,8 @@ public abstract class EdgeEffect {
   public static EdgeEffect create(CFAEdge pEdge) {
     CFAEdgeType edgeType = pEdge.getEdgeType();
 
-    // make cases for each type of edge and create appropriate EdgeEffect object
+    // TODO make cases for each type of edge and create appropriate EdgeEffect object
+
     return null;
   }
 
@@ -88,8 +89,10 @@ public abstract class EdgeEffect {
   }
 
   public Graph apply(Vertex v, Graph pre) {
+    // TODO need to write this out
     return pre;
   }
 
+  // function to keep track of all terms encountered during the algorithm
   public abstract Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF);
 }
