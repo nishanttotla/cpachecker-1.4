@@ -33,4 +33,9 @@ public class CopySimpleEdgeEffect extends SimpleEdgeEffect {
   public CopySimpleEdgeEffect(CFAEdge pEdge) {
     super(pEdge);
   }
+
+  @Override
+  public Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF) {
+    return new Footprint(pF, pBfmgr.makeVariable(varLhs));
+  }
 }

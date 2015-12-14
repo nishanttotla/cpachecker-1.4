@@ -28,6 +28,7 @@ import org.sosy_lab.cpachecker.cfa.ast.c.CLeftHandSide;
 import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
 import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
+import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaManagerView;
 
 public class AllocSimpleEdgeEffect extends SimpleEdgeEffect {
   private String heapVar;
@@ -43,5 +44,10 @@ public class AllocSimpleEdgeEffect extends SimpleEdgeEffect {
     } else {
       assert(false); // if this happens, something went wrong
     }
+  }
+
+  @Override
+  public Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF) {
+    return pF;
   }
 }

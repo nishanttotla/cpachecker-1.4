@@ -88,7 +88,7 @@ public abstract class EdgeEffect {
   }
 
   public Graph apply(Vertex v, Graph pre) {
-    return null;
+    return pre;
   }
 
   public abstract Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF);
