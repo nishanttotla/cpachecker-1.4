@@ -42,8 +42,26 @@ public class StmtUtil {
     return nameExpr.toString();
   }
 
-  // get
+  // get variable name from expression
   public static String getVariableName(CExpression expr) {
     return expr.toString();
+  }
+
+  // check if the expression contains a pointer dereference, and return it
+  public static Dereference hasDereference(CExpression expr) {
+    if(expr instanceof CIntegerLiteralExpression) {
+      return null;
+    } else if(expr instanceof CFieldReference) {
+      CFieldReference fieldExpr = (CFieldReference)expr;
+      String fieldName = fieldExpr.getFieldName();
+      String varName = getVariableName(fieldExpr.getFieldOwner());
+      return new Dereference(fieldName, varName);
+    } else if(expr instanceof CIdExpression) {
+      // reference to a variable, not a dereference
+      return null;
+    } else {
+      assert(false);
+    }
+    return null;
   }
 }
