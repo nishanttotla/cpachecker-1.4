@@ -60,6 +60,8 @@ public abstract class EdgeEffect {
       return new PassthroughSimpleEdgeEffect(pEdge);
     } else if(edgeType == CFAEdgeType.DeclarationEdge) {
       return new PassthroughSimpleEdgeEffect(pEdge);
+    } else if(edgeType == CFAEdgeType.ReturnStatementEdge) {
+      return new PassthroughSimpleEdgeEffect(pEdge);
     } else if(edgeType == CFAEdgeType.StatementEdge) {
       return createStatementEffect((CStatementEdge)pEdge);
     } else {

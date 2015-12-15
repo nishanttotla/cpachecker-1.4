@@ -3,9 +3,14 @@ struct node {
   struct node* next;
 };
 
+// parser does not handle NULL right now
+struct node* NULL = 0;
+
 int main() {
   int i = 0;
   int a = 0;
+  struct node* ptr = malloc(sizeof(struct node));
+  ptr = NULL;
 
   while (1) {
     if (i == 20) {
