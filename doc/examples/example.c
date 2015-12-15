@@ -10,7 +10,8 @@ int main() {
   int i = 0;
   int a = 0;
   struct node* ptr = malloc(sizeof(struct node));
-  ptr = NULL;
+  struct node* head = malloc(sizeof(struct node));
+  ptr = head;
 
   while (1) {
     if (i == 20) {
