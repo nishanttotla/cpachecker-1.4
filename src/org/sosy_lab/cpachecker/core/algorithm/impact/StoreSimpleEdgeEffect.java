@@ -39,7 +39,7 @@ public class StoreSimpleEdgeEffect extends SimpleEdgeEffect {
     super(pEdge);
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CExpression) {
-      // TODO fill this space
+      // TODO fill this space to extract class data members
     }
   }
 

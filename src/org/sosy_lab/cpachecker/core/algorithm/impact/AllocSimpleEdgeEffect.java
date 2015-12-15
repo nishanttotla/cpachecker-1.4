@@ -44,6 +44,7 @@ public class AllocSimpleEdgeEffect extends SimpleEdgeEffect {
     } else {
       assert(false); // if this happens, something went wrong
     }
+    System.out.println("ALLOC heapVar " + heapVar);
   }
 
   @Override

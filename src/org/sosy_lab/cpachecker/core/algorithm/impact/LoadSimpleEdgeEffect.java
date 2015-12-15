@@ -35,6 +35,7 @@ public class LoadSimpleEdgeEffect extends SimpleEdgeEffect {
 
   public LoadSimpleEdgeEffect(CStatementEdge edge, CLeftHandSide pLeftHandSide, CExpression pRightHandSide) {
     super(edge);
+    // TODO extract class data members
   }
 
   @Override
