@@ -32,23 +32,24 @@ import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaMan
 
 public class StoreSimpleEdgeEffect extends SimpleEdgeEffect {
   String srcVar;
-  String destVar;
+  String varDereferenced;
   String fieldName;
 
   public StoreSimpleEdgeEffect(CFAEdge pEdge, CExpression lhs, CExpression rhs) {
     super(pEdge);
+    System.out.println("STORE " + lhs + " ----- " + rhs);
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CExpression) {
       // TODO optimization - this call to hasDeref already done before
       Dereference d = StmtUtil.hasDereference(lhs);
       fieldName = d.fieldName;
-      destVar = d.varName;
+      varDereferenced = d.varName;
     }
   }
 
   @Override
   public Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF) {
-    Dereference d = new Dereference(destVar, fieldName);
+    Dereference d = new Dereference(varDereferenced, fieldName);
     return new Footprint(pF, d);
   }
 }

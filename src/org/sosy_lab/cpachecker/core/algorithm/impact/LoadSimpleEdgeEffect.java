@@ -25,18 +25,26 @@ package org.sosy_lab.cpachecker.core.algorithm.impact;
 
 import org.sosy_lab.cpachecker.cfa.ast.c.CExpression;
 import org.sosy_lab.cpachecker.cfa.ast.c.CLeftHandSide;
+import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
 import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaManagerView;
 
 public class LoadSimpleEdgeEffect extends SimpleEdgeEffect {
   String varLhs;
-  String varRhs;
+  String varDereferenced;
   String fieldName;
 
-  public LoadSimpleEdgeEffect(CStatementEdge edge, CLeftHandSide pLeftHandSide, CExpression pRightHandSide) {
-    super(edge);
-    // TODO extract class data members
+  public LoadSimpleEdgeEffect(CStatementEdge pEdge, CExpression lhs, CExpression rhs) {
+    super(pEdge);
+    System.out.println("LOAD " + lhs + " ----- " + rhs);
+    CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
+    if(cstmt instanceof CExpression) {
+      // TODO optimization - this call to hasDeref already done before
+      Dereference d = StmtUtil.hasDereference(rhs);
+      fieldName = d.fieldName;
+      varDereferenced = d.varName;
+    }
   }
 
   @Override
