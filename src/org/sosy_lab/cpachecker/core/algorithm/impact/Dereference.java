@@ -26,8 +26,8 @@ package org.sosy_lab.cpachecker.core.algorithm.impact;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 
 public class Dereference implements BooleanFormula {
-  private String fieldName;
-  private String varName;
+  public String fieldName;
+  public String varName;
 
   public Dereference(String fieldName, String varName) {
     this.fieldName = fieldName;

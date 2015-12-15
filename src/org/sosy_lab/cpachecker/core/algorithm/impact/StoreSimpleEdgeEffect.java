@@ -39,7 +39,10 @@ public class StoreSimpleEdgeEffect extends SimpleEdgeEffect {
     super(pEdge);
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CExpression) {
-      // TODO fill this space to extract class data members
+      // TODO optimization - this call to hasDeref already done before
+      Dereference d = StmtUtil.hasDereference(lhs);
+      fieldName = d.fieldName;
+      destVar = d.varName;
     }
   }
 

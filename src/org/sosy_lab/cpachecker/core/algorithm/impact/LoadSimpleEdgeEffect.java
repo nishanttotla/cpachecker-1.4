@@ -32,6 +32,7 @@ import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaMan
 public class LoadSimpleEdgeEffect extends SimpleEdgeEffect {
   String varLhs;
   String varRhs;
+  String fieldName;
 
   public LoadSimpleEdgeEffect(CStatementEdge edge, CLeftHandSide pLeftHandSide, CExpression pRightHandSide) {
     super(edge);
