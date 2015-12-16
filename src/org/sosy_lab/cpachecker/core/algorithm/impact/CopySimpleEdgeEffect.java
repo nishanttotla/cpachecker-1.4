@@ -23,6 +23,7 @@
  */
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
+import org.sosy_lab.cpachecker.cfa.ast.c.CExpression;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaManagerView;
 
@@ -30,7 +31,7 @@ public class CopySimpleEdgeEffect extends SimpleEdgeEffect {
   String varLhs;
   String varRhs;
 
-  public CopySimpleEdgeEffect(CFAEdge pEdge) {
+  public CopySimpleEdgeEffect(CFAEdge pEdge, CExpression lhs, CExpression rhs) {
     super(pEdge);
   }
 

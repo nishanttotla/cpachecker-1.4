@@ -50,7 +50,6 @@ public class StmtUtil {
 
   // check if the expression contains a pointer dereference, and return it
   public static Dereference hasDereference(CExpression expr) {
-    System.out.println("Calling hasDeref with expr " + expr + " of class " + expr.getClass());
     if(expr instanceof CIntegerLiteralExpression) {
       return null;
     } else if(expr instanceof CFieldReference) {

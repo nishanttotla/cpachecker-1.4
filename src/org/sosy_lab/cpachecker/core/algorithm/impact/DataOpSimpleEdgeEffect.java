@@ -33,6 +33,7 @@ import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaMan
 public class DataOpSimpleEdgeEffect extends SimpleEdgeEffect {
   public DataOpSimpleEdgeEffect(CFAEdge pEdge) {
     super(pEdge);
+    System.out.println("DATAOP " + pEdge);
     // TODO add data members and extract them
   }
 
