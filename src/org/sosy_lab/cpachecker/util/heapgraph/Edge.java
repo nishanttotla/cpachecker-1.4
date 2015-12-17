@@ -32,9 +32,10 @@ public class Edge {
   public Node destination;
   public String field; // name of the outgoing field from source
 
-  public Edge(ThreeVal st, Node src, Node dst) {
+  public Edge(Node src, Node dst, String field, ThreeVal st) {
     this.status = st;
     this.source = src;
     this.destination = dst;
+    this.field = field;
   }
 }

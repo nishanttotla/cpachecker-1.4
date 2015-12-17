@@ -28,7 +28,12 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /*
-  Formal definition of graph is here: https://cloud.githubusercontent.com/assets/1872537/11579439/ec22840e-99e2-11e5-8cdb-36f17e3f9d09.png
+ * Formal definition of graph is here: https://cloud.githubusercontent.com/assets/1872537/11579439/ec22840e-99e2-11e5-8cdb-36f17e3f9d09.png
+ * Description wrt current implementation:
+ * - Set of nodes (maintained by class Graph)
+ * - V : N x Vars_H -> B3
+ * - P : N x Vars_P -> B3
+ * - E : N x Fields x N -> B3 (edge status stored by edge)
  */
 public class Graph {
   // Defining values in three-valued logic
@@ -50,7 +55,7 @@ public class Graph {
 
   public Set<Node> nodes;
   public HashMap<Edge, ThreeVal> edges; // E: N x Fields x N -> B3
-  public HashMap<HVEdge, ThreeVal> heapVarLabeling; // V: N x Vars_h -> B3
+  public HashMap<HVEdge, ThreeVal> heapVarLabeling; // V: N x Vars_H -> B3
 
   private boolean isUniversal; // heap is universal - symbolic
   private boolean isEmpty; // heap is empty - symbolic
