@@ -43,8 +43,10 @@ import org.sosy_lab.common.configuration.Options;
 import org.sosy_lab.common.log.LogManager;
 import org.sosy_lab.common.time.Timer;
 import org.sosy_lab.cpachecker.cfa.CFA;
+import org.sosy_lab.cpachecker.cfa.CProgramScope;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFANode;
+import org.sosy_lab.cpachecker.cfa.parser.Scope;
 import org.sosy_lab.cpachecker.core.AnalysisDirection;
 import org.sosy_lab.cpachecker.core.CPAcheckerResult.Result;
 import org.sosy_lab.cpachecker.core.ShutdownNotifier;
@@ -72,6 +74,9 @@ import org.sosy_lab.cpachecker.util.predicates.pathformula.SSAMap;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+
+import org.sosy_lab.cpachecker.cfa.types.c.CType;
+import org.sosy_lab.cpachecker.cfa.types.c.CPointerType;
 
 /**
  * This is an implementation of McMillan's algorithm which was presented in the
@@ -142,6 +147,14 @@ public class ImpactAlgorithm implements Algorithm, StatisticsProvider {
     bfmgr = fmgr.getBooleanFormulaManager();
     pfmgr = new CachingPathFormulaManager(new PathFormulaManagerImpl(fmgr, config, logger, pShutdownNotifier, cfa, AnalysisDirection.FORWARD));
     imgr = new InterpolationManager(pfmgr, solver, config, pShutdownNotifier, logger);
+
+    // test code to check if pointer points to struct node
+    // now just need to figure out a way to get types for fields of struct node
+    // Look at CComplexTypeDeclaration.java
+    // Once this is done, find all pointers to struct node in the program, to be stored in the heapvar labeling for Graph
+    Scope programScope = new CProgramScope(cfa, pLogger);
+    CPointerType boo = (CPointerType)programScope.lookupVariable("ptr").getType();
+    System.out.println("TESTING CPROGSCOPE " + boo.getType());
   }
 
   public AbstractState getInitialState(CFANode location) {
