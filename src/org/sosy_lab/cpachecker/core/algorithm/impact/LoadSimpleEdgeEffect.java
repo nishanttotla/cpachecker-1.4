@@ -32,18 +32,15 @@ import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaMan
 
 public class LoadSimpleEdgeEffect extends SimpleEdgeEffect {
   String varLhs;
-  String varDereferenced;
-  String fieldName;
+  Dereference deref;
 
   public LoadSimpleEdgeEffect(CStatementEdge pEdge, CExpression lhs, CExpression rhs) {
     super(pEdge);
     System.out.println("LOAD " + lhs + " ----- " + rhs);
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CExpression) {
-      // TODO optimization - this call to hasDeref already done before
-      Dereference d = StmtUtil.hasDereference(rhs);
-      fieldName = d.fieldName;
-      varDereferenced = d.varName;
+      // TODO optimization - this call to getDeref already done before
+      deref = StmtUtil.getDereference(rhs);
     }
   }
 

@@ -49,7 +49,7 @@ public class StmtUtil {
   }
 
   // check if the expression contains a pointer dereference, and return it
-  public static Dereference hasDereference(CExpression expr) {
+  public static Dereference getDereference(CExpression expr) {
     if(expr instanceof CIntegerLiteralExpression) {
       return null;
     } else if(expr instanceof CFieldReference) {
@@ -62,14 +62,13 @@ public class StmtUtil {
       } else {
         return new Dereference(fieldName, varName, false);
       }
-      return new Dereference(fieldName, varName);
     } else if(expr instanceof CIdExpression) {
       // reference to a variable, not a dereference
       return null;
     } else if(expr instanceof CBinaryExpression) {
       return null;
     } else {
-      System.out.println("[StmtUtil.hasDereference] unknown expr type " + expr.getClass() + " " + expr.getExpressionType());
+      System.out.println("[StmtUtil.getDereference] unknown expr type " + expr.getClass() + " " + expr.getExpressionType());
       assert(false);
     }
     return null;

@@ -89,10 +89,10 @@ public abstract class EdgeEffect {
       }
     } else if(stmt instanceof CExpressionAssignmentStatement) {
       CExpressionAssignmentStatement assgn = (CExpressionAssignmentStatement)stmt;
-      if(StmtUtil.hasDereference(assgn.getRightHandSide()) != null) {
+      if(StmtUtil.getDereference(assgn.getRightHandSide()) != null) {
         // load (rhs dereference)
         return new LoadSimpleEdgeEffect(pEdge, assgn.getLeftHandSide(), assgn.getRightHandSide());
-      } else if(StmtUtil.hasDereference(assgn.getLeftHandSide()) != null) {
+      } else if(StmtUtil.getDereference(assgn.getLeftHandSide()) != null) {
         // store (lhs dereference)
         return new StoreSimpleEdgeEffect(pEdge, assgn.getLeftHandSide(), assgn.getRightHandSide());
       } else {
