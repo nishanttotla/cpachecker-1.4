@@ -36,7 +36,6 @@ public class LoadSimpleEdgeEffect extends SimpleEdgeEffect {
 
   public LoadSimpleEdgeEffect(CStatementEdge pEdge, CExpression lhs, CExpression rhs) {
     super(pEdge);
-    System.out.println("LOAD " + lhs + " ----- " + rhs);
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CExpression) {
       // TODO optimization - this call to getDeref already done before

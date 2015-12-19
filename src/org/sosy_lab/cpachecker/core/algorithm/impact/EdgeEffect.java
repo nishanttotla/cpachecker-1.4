@@ -63,14 +63,13 @@ public abstract class EdgeEffect {
       return new PassthroughSimpleEdgeEffect(pEdge);
     } else if(edgeType == CFAEdgeType.DeclarationEdge) {
       CDeclaration dcl = ((CDeclarationEdge) pEdge).getDeclaration();
-      System.out.println("GOT DECLARATION " + dcl + " class " + dcl.getClass());
       return new PassthroughSimpleEdgeEffect(pEdge);
     } else if(edgeType == CFAEdgeType.ReturnStatementEdge) {
       return new PassthroughSimpleEdgeEffect(pEdge);
     } else if(edgeType == CFAEdgeType.StatementEdge) {
       return createStatementEffect((CStatementEdge)pEdge);
     } else {
-      System.out.println("Unknown edge type");
+      System.out.println("Unknown edge type in EdgeEffect");
       assert(false);
     }
     return null;
