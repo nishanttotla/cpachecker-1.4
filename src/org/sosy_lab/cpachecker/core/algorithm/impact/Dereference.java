@@ -28,9 +28,11 @@ import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 public class Dereference implements BooleanFormula {
   public String fieldName;
   public String varName;
+  public boolean isPointerField; // is varName->fieldName a pointer to the type of varName
 
-  public Dereference(String fieldName, String varName) {
+  public Dereference(String fieldName, String varName, boolean isPointerField) {
     this.fieldName = fieldName;
     this.varName = varName;
+    this.isPointerField = isPointerField;
   }
 }
