@@ -56,12 +56,7 @@ public class StmtUtil {
       CFieldReference fieldExpr = (CFieldReference)expr;
       String fieldName = fieldExpr.getFieldName();
       String varName = getVariableName(fieldExpr.getFieldOwner());
-      System.out.println("DEREF TYPECHECK YO "+fieldExpr.getExpressionType());
-      if(true) { // add condition to check if type of fieldName is pointer to type of varName
-        return new Dereference(fieldName, varName, true);
-      } else {
-        return new Dereference(fieldName, varName, false);
-      }
+      return new Dereference(fieldName, varName, fieldExpr.getFieldOwner().getExpressionType().equals(fieldExpr.getExpressionType()));
     } else if(expr instanceof CIdExpression) {
       // reference to a variable, not a dereference
       return null;
