@@ -40,7 +40,7 @@ public class AllocSimpleEdgeEffect extends SimpleEdgeEffect {
     if(cstmt instanceof CFunctionCallAssignmentStatement) {
       CFunctionCallAssignmentStatement cfAssgn = (CFunctionCallAssignmentStatement)cstmt;
       CLeftHandSide lhs = cfAssgn.getLeftHandSide();
-      heapVar = StmtUtil.getVariableName(lhs);
+      heapVar = StmtUtil.getVariableName(lhs); // TODO keep track of this variable so that it can be tracked in the heapVarLabeling
     } else {
       assert(false); // if this happens, something went wrong
     }

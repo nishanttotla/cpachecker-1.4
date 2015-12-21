@@ -29,14 +29,17 @@ import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 
 public class Footprint {
   Set<BooleanFormula> terms;
+  Set<String> heapVarsSeen; // all heapvars seen so far, need to be tracked in the graph
 
   Footprint() {
     terms = new HashSet<>();
+    heapVarsSeen = new HashSet<>();
   }
 
   public Footprint(Footprint pre) {
     this();
     terms.addAll(pre.terms);
+    heapVarsSeen.addAll(pre.heapVarsSeen);
   }
 
   public Footprint(Footprint pre, BooleanFormula term) {
@@ -44,7 +47,16 @@ public class Footprint {
     terms.add(term);
   }
 
+  public Footprint(Footprint pre, String heapVar) {
+    this(pre);
+    heapVarsSeen.add(heapVar);
+  }
+
   public Set<BooleanFormula> getTerms() {
     return terms;
+  }
+
+  public Set<String> getHeapVars() {
+    return heapVarsSeen;
   }
 }
