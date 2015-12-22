@@ -43,19 +43,9 @@ public class Graph {
     MAYBE
   }
 
-  private class HVEdge {
-    public Node node;
-    public HeapVar var;
-
-    public HVEdge(Node node, HeapVar var) {
-      this.node = node;
-      this.var = var;
-    }
-  }
-
   public Set<Node> nodes;
   public HashMap<Edge, ThreeVal> edges; // E: N x Fields x N -> B3
-  public HashMap<HVEdge, ThreeVal> heapVarLabeling; // V: N x Vars_H -> B3
+  public HeapVarLabeling heapVarLabels; // V: N x Vars_H -> B3
 
   private boolean isUniversal; // heap is universal - symbolic
   private boolean isEmpty; // heap is empty - symbolic
@@ -63,7 +53,7 @@ public class Graph {
   public Graph() {
     this.nodes = new TreeSet<>();
     this.edges = new HashMap<>();
-    this.heapVarLabeling = new HashMap<>();
+    // this.heapVarLabels = new HashMap<>();
     this.isUniversal = false;
     this.isEmpty = false;
   }
