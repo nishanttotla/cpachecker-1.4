@@ -52,4 +52,9 @@ public class HeapVarLabeling {
     this.heapVarsSeen = new HashSet<>();
     this.heapVarLabels = new HashMap<>();
   }
+
+  public void addNewHeapVar(String var) {
+    heapVarsSeen.add(var);
+    // TODO add maybe edges to all nodes
+  }
 }
