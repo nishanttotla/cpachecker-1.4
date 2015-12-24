@@ -46,7 +46,9 @@ public class PassthroughSimpleEdgeEffect extends SimpleEdgeEffect {
         CPointerType ptrType = (CPointerType)dcl.getType();
         if(ptrType.getType() instanceof CComplexType) {
           CComplexType objType = (CComplexType)ptrType.getType();
-          System.out.println("KIND IS " + objType.getKind());
+          if(objType.getKind() == CComplexType.ComplexTypeKind.STRUCT) {
+            System.out.println("FOUND POINTER TO STRUCT");
+          }
         }
       }
     }
