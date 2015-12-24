@@ -23,16 +23,33 @@
  */
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
+import org.sosy_lab.cpachecker.cfa.ast.c.CDeclaration;
 import org.sosy_lab.cpachecker.cfa.ast.c.CExpression;
 import org.sosy_lab.cpachecker.cfa.ast.c.CLeftHandSide;
 import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
+import org.sosy_lab.cpachecker.cfa.model.c.CDeclarationEdge;
 import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
+import org.sosy_lab.cpachecker.cfa.model.CFAEdgeType;
+import org.sosy_lab.cpachecker.cfa.types.c.CComplexType;
+import org.sosy_lab.cpachecker.cfa.types.c.CPointerType;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaManagerView;
 
 public class PassthroughSimpleEdgeEffect extends SimpleEdgeEffect {
   public PassthroughSimpleEdgeEffect(CFAEdge pEdge) {
     super(pEdge);
+    CFAEdgeType edgeType = pEdge.getEdgeType();
+    if(edgeType == CFAEdgeType.DeclarationEdge) {
+      CDeclaration dcl = ((CDeclarationEdge) pEdge).getDeclaration();
+      System.out.println("Decl type is "+ dcl.getType());
+      if(dcl.getType() instanceof CPointerType) {
+        CPointerType ptrType = (CPointerType)dcl.getType();
+        if(ptrType.getType() instanceof CComplexType) {
+          CComplexType objType = (CComplexType)ptrType.getType();
+          System.out.println("KIND IS " + objType.getKind());
+        }
+      }
+    }
   }
 
   @Override

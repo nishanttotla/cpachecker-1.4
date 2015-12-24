@@ -53,7 +53,6 @@ public class Graph {
   public Graph() {
     this.nodes = new TreeSet<>();
     this.edges = new HashMap<>();
-    // this.heapVarLabels = new HashMap<>();
     this.isUniversal = false;
     this.isEmpty = false;
   }

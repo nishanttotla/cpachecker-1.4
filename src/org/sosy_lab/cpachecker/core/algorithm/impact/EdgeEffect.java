@@ -23,12 +23,10 @@
  */
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
-import org.sosy_lab.cpachecker.cfa.ast.c.CDeclaration;
 import org.sosy_lab.cpachecker.cfa.ast.c.CExpressionAssignmentStatement;
 import org.sosy_lab.cpachecker.cfa.ast.c.CExpressionStatement;
 import org.sosy_lab.cpachecker.cfa.ast.c.CFunctionCallAssignmentStatement;
 import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
-import org.sosy_lab.cpachecker.cfa.model.c.CDeclarationEdge;
 import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdgeType;
@@ -62,7 +60,6 @@ public abstract class EdgeEffect {
     } else if(edgeType == CFAEdgeType.BlankEdge) {
       return new PassthroughSimpleEdgeEffect(pEdge);
     } else if(edgeType == CFAEdgeType.DeclarationEdge) {
-      CDeclaration dcl = ((CDeclarationEdge) pEdge).getDeclaration();
       return new PassthroughSimpleEdgeEffect(pEdge);
     } else if(edgeType == CFAEdgeType.ReturnStatementEdge) {
       return new PassthroughSimpleEdgeEffect(pEdge);
@@ -76,6 +73,7 @@ public abstract class EdgeEffect {
   }
 
   // for a statement that does heap manipulation, create the appropriate effect
+  // this function handles loads/stores/allocs
   private static EdgeEffect createStatementEffect(CStatementEdge pEdge) {
     CStatement stmt = pEdge.getStatement();
 
