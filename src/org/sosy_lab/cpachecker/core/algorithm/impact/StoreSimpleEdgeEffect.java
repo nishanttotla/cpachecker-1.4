@@ -36,6 +36,7 @@ public class StoreSimpleEdgeEffect extends SimpleEdgeEffect {
 
   public StoreSimpleEdgeEffect(CFAEdge pEdge, CExpression lhs, CExpression rhs) {
     super(pEdge);
+    opType = OpType.STORE;
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CExpression) {
       // TODO optimization - this call to getDeref already done before

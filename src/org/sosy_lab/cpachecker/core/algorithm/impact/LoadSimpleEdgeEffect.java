@@ -36,6 +36,7 @@ public class LoadSimpleEdgeEffect extends SimpleEdgeEffect {
 
   public LoadSimpleEdgeEffect(CStatementEdge pEdge, CExpression lhs, CExpression rhs) {
     super(pEdge);
+    opType = OpType.LOAD;
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CExpression) {
       // TODO optimization - this call to getDeref already done before

@@ -35,12 +35,15 @@ public class AllocSimpleEdgeEffect extends SimpleEdgeEffect {
 
   public AllocSimpleEdgeEffect(CFAEdge pEdge) {
     super(pEdge);
+    opType = OpType.ALLOC;
 
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CFunctionCallAssignmentStatement) {
       CFunctionCallAssignmentStatement cfAssgn = (CFunctionCallAssignmentStatement)cstmt;
       CLeftHandSide lhs = cfAssgn.getLeftHandSide();
-      heapVar = StmtUtil.getVariableName(lhs); // TODO keep track of this variable so that it can be tracked in the heapVarLabeling
+      heapVar = StmtUtil.getVariableName(lhs);
+      // note that CPAChecker always splits declaration and assignment (SSA)
+      // so we keep track of new struct pointers during declaration
     } else {
       assert(false); // if this happens, something went wrong
     }

@@ -47,6 +47,8 @@ public class PassthroughSimpleEdgeEffect extends SimpleEdgeEffect {
         if(ptrType.getType() instanceof CComplexType) {
           CComplexType objType = (CComplexType)ptrType.getType();
           if(objType.getKind() == CComplexType.ComplexTypeKind.STRUCT) {
+            // we assume only one struct exists in the program
+            // when a pointer to that struct is found in a declaration, we need to keep track of it
             System.out.println("FOUND POINTER TO STRUCT");
           }
         }
