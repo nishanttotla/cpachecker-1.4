@@ -186,8 +186,9 @@ public class ImpactAlgorithm implements Algorithm, StatisticsProvider {
       for (CFAEdge edge : leavingEdges(loc)) {
 
         System.out.println(edge.getEdgeType() + " " + edge.getLineNumber() + ": " + edge.getCode());
-        EdgeEffect effect = EdgeEffect.create(edge);
-        effect.apply(v, v.getHeap());
+        SimpleHeapTransfer simpleTransfer = new SimpleHeapTransfer();
+        simpleTransfer.post(edge, v, v.getHeap());
+
         Collection<? extends AbstractState> successors = cpa.getTransferRelation().getAbstractSuccessorsForEdge(predecessor, precision, edge);
         if (successors.isEmpty()) {
           // edge not feasible
