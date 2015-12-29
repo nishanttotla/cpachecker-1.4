@@ -187,7 +187,7 @@ public class ImpactAlgorithm implements Algorithm, StatisticsProvider {
 
         System.out.println(edge.getEdgeType() + " " + edge.getLineNumber() + ": " + edge.getCode());
         SimpleHeapTransfer simpleTransfer = new SimpleHeapTransfer();
-        simpleTransfer.post(edge, v, v.getHeap());
+        Graph postGraph = simpleTransfer.post(edge, v, v.getHeap());
 
         Collection<? extends AbstractState> successors = cpa.getTransferRelation().getAbstractSuccessorsForEdge(predecessor, precision, edge);
         if (successors.isEmpty()) {

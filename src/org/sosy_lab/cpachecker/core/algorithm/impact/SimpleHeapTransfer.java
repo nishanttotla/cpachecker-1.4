@@ -28,6 +28,10 @@ import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.util.heapgraph.Graph;
 
 public class SimpleHeapTransfer {
+  public SimpleHeapTransfer() {
+
+  }
+
   public Graph post(CFAEdge edge, Vertex v, Graph pre) {
     EdgeEffect effect = EdgeEffect.create(edge);
     Graph post = effect.apply(v, pre);
