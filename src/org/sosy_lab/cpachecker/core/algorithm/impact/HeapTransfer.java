@@ -34,6 +34,10 @@ import org.sosy_lab.cpachecker.util.heapgraph.Graph;
  */
 
 class HeapTransfer {
+  public HeapTransfer() {
+
+  }
+
   public Graph post(Vertex v, CFAEdge edge, Graph pre) {
     return null;
   }

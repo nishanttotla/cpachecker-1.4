@@ -107,7 +107,8 @@ public abstract class EdgeEffect {
   }
 
   public Graph apply(Vertex v, Graph pre) {
-    // TODO need to write this out
+    // TODO need to write this out, uses HeapTransfer
+    HeapTransfer heapTransfer = new HeapTransfer();
     return pre;
   }
 
