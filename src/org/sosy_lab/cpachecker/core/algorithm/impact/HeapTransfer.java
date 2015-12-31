@@ -42,8 +42,28 @@ class HeapTransfer {
     return null;
   }
 
-  public Graph applyStatement(CStatement stmt, Graph pre) {
-    return null;
+  public Graph applyAlloc(AllocSimpleEdgeEffect applyEffect, Vertex v, Graph pre) {
+    return pre;
+  }
+
+  public Graph applyStore(StoreSimpleEdgeEffect storeEffect, Vertex v, Graph pre) {
+    return pre;
+  }
+
+  public Graph applyLoad(LoadSimpleEdgeEffect loadEffect, Vertex v, Graph pre) {
+    return pre;
+  }
+
+  public Graph applyCopy(CopySimpleEdgeEffect copyEffect, Vertex v, Graph pre) {
+    return pre;
+  }
+
+  public Graph applyDataOp(DataOpSimpleEdgeEffect dataOpEffect, Vertex v, Graph pre) {
+    return pre;
+  }
+
+  public Graph applyPassthrough(PassthroughSimpleEdgeEffect passthroughEffect, Vertex v, Graph pre) {
+    return pre;
   }
 
   public Graph applyDeclaration(CSimpleDeclaration decl, Graph pre) {

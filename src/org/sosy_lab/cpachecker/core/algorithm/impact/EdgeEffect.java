@@ -106,9 +106,26 @@ public abstract class EdgeEffect {
     return null;
   }
 
-  public Graph apply(Vertex v, Graph pre) {
+  public Graph apply(Vertex v, Graph pre, EdgeEffect effect) {
     // TODO need to write this out, uses HeapTransfer
     HeapTransfer heapTransfer = new HeapTransfer();
+
+    if(effect instanceof AllocSimpleEdgeEffect) {
+
+    } else if(effect instanceof LoadSimpleEdgeEffect) {
+
+    } else if(effect instanceof StoreSimpleEdgeEffect) {
+
+    } else if(effect instanceof CopySimpleEdgeEffect) {
+
+    } else if(effect instanceof DataOpSimpleEdgeEffect) {
+
+    } else if(effect instanceof PassthroughSimpleEdgeEffect) {
+
+    } else {
+      System.out.println("Unknown effect detected. Failing!");
+      assert(false);
+    }
     return pre;
   }
 

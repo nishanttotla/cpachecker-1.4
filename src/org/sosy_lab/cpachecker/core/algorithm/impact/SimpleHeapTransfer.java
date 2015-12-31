@@ -34,7 +34,7 @@ public class SimpleHeapTransfer {
 
   public Graph post(CFAEdge edge, Vertex v, Graph pre) {
     EdgeEffect effect = EdgeEffect.create(edge);
-    Graph post = effect.apply(v, pre);
+    Graph post = effect.apply(v, pre, effect);
     return post;
   }
 }
