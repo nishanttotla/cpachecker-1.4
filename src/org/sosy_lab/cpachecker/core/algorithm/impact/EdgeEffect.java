@@ -111,17 +111,17 @@ public abstract class EdgeEffect {
     HeapTransfer heapTransfer = new HeapTransfer();
 
     if(effect instanceof AllocSimpleEdgeEffect) {
-
+      return heapTransfer.applyAlloc((AllocSimpleEdgeEffect)effect, v, pre);
     } else if(effect instanceof LoadSimpleEdgeEffect) {
-
+      return heapTransfer.applyLoad((LoadSimpleEdgeEffect)effect, v, pre);
     } else if(effect instanceof StoreSimpleEdgeEffect) {
-
+      return heapTransfer.applyStore((StoreSimpleEdgeEffect)effect, v, pre);
     } else if(effect instanceof CopySimpleEdgeEffect) {
-
+      return heapTransfer.applyCopy((CopySimpleEdgeEffect)effect, v, pre);
     } else if(effect instanceof DataOpSimpleEdgeEffect) {
-
+      return heapTransfer.applyDataOp((DataOpSimpleEdgeEffect)effect, v, pre);
     } else if(effect instanceof PassthroughSimpleEdgeEffect) {
-
+      return heapTransfer.applyPassthrough((PassthroughSimpleEdgeEffect)effect, v, pre);
     } else {
       System.out.println("Unknown effect detected. Failing!");
       assert(false);

@@ -27,6 +27,7 @@ package org.sosy_lab.cpachecker.core.algorithm.impact;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.util.heapgraph.Graph;
 
+// simplified interface for computing post graph using CFAEdge
 public class SimpleHeapTransfer {
   public SimpleHeapTransfer() {
 

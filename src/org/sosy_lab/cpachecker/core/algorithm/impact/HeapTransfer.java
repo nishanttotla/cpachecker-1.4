@@ -30,7 +30,7 @@ import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.util.heapgraph.Graph;
 
 /*
-  This class defines functions for transforming heaps across edges
+  This class defines functions for transforming heaps across edges of specific types
  */
 
 class HeapTransfer {
