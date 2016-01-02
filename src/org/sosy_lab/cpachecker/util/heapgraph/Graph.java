@@ -26,6 +26,7 @@ package org.sosy_lab.cpachecker.util.heapgraph;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.TreeSet;
+import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 
 /*
  * Formal definition of graph is here: https://cloud.githubusercontent.com/assets/1872537/11579439/ec22840e-99e2-11e5-8cdb-36f17e3f9d09.png
@@ -42,6 +43,8 @@ public class Graph {
     TRUE,
     MAYBE
   }
+
+  public BooleanFormula nodeFormula;
 
   public Set<Node> nodes;
   public HashMap<Edge, ThreeVal> edges; // E: N x Fields x N -> B3
@@ -69,5 +72,10 @@ public class Graph {
     empt.isEmpty = true;
     empt.isUniversal = false;
     return empt;
+  }
+
+  // graph editing functions
+  public void addNode(Node n) {
+    // TODO write this
   }
 }

@@ -28,11 +28,11 @@ import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 
 // Define node for a heap graph
 public class Node {
-  public BooleanFormula predicate;
+  public BooleanFormula predicate; // TODO this predicate should ideally be uniform across nodes
   public ThreeVal predLabel;
 
-  boolean isRoot;
-  boolean summary;
+  public boolean isRoot;
+  public boolean summary;
 
   public Node(BooleanFormula predicate) {
     this.predicate = predicate;

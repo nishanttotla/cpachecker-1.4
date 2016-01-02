@@ -28,6 +28,8 @@ import org.sosy_lab.cpachecker.cfa.ast.c.CSimpleDeclaration;
 import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.util.heapgraph.Graph;
+import org.sosy_lab.cpachecker.util.heapgraph.Node;
+
 
 /*
   This class defines functions for transforming heaps across edges of specific types
@@ -42,7 +44,19 @@ class HeapTransfer {
     return null;
   }
 
-  public Graph applyAlloc(AllocSimpleEdgeEffect applyEffect, Vertex v, Graph pre) {
+  /*
+   * ALLOC (v := alloc())
+   * Create new node n that is not in N.
+   * N' = N U {n}
+   * V' updates V so that V'(v,n) = True, and for all m≠n, V'(v,m) = False
+   * E' updates E so that E'(n,f,m) = False for all fields f.
+   */
+  public Graph applyAlloc(AllocSimpleEdgeEffect allocEffect, Vertex v, Graph pre) {
+    String heapVar = allocEffect.getHeapVar();
+    Node allocNode = new Node(pre.nodeFormula, true); // new node is a root
+    Graph post = pre;
+    post.addNode(allocNode);
+    // TODO add functions for updating heapvar assignments for new node
     return pre;
   }
 

@@ -49,6 +49,10 @@ public class AllocSimpleEdgeEffect extends SimpleEdgeEffect {
     }
   }
 
+  public String getHeapVar() {
+    return heapVar;
+  }
+
   @Override
   public Footprint apply(BooleanFormulaManagerView pBfmgr, Vertex pPrev, Footprint pF) {
     return pF;
