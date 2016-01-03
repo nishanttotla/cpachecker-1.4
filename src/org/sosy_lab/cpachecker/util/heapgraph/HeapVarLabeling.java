@@ -46,7 +46,7 @@ public class HeapVarLabeling {
   }
 
   public Set<String> heapVarsSeen; // all heapvars seen so far, need to be tracked in the graph
-  public HashMap<HVEdge, ThreeVal> heapVarLabels; // V: N x Vars_H -> B3
+  public HashMap<HVEdge, ThreeVal> heapVarLabels; // V: N x Vars_H -> B3. For optimality, only store TRUE/MAYBE edges
 
   public HeapVarLabeling() {
     this.heapVarsSeen = new HashSet<>();
@@ -56,5 +56,19 @@ public class HeapVarLabeling {
   public void addNewHeapVar(String var) {
     heapVarsSeen.add(var);
     // TODO add maybe edges to all nodes
+  }
+
+  public void addNewNodeWithHeapVarAssignment(Node node, String var) {
+    HVEdge newEdge = new HVEdge(node, var);
+    heapVarLabels.put(newEdge, ThreeVal.TRUE);
+    // TODO if any MAYBE edges exist for var, delete them from the map
+  }
+
+  public ThreeVal getHeapVarAssignmentStatus(Node node, String var) {
+    HVEdge queryEdge = new HVEdge(node, var);
+    if(heapVarLabels.containsKey(queryEdge)) {
+      return heapVarLabels.get(queryEdge);
+    }
+    return ThreeVal.FALSE;
   }
 }

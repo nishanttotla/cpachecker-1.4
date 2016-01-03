@@ -47,7 +47,7 @@ public class Graph {
   public BooleanFormula nodeFormula;
 
   public Set<Node> nodes;
-  public HashMap<Edge, ThreeVal> edges; // E: N x Fields x N -> B3
+  public HashMap<Edge, ThreeVal> edges; // E: N x Fields x N -> B3. For optimality, only store TRUE/MAYBE edges
   public HeapVarLabeling heapVarLabels; // V: N x Vars_H -> B3
 
   private boolean isUniversal; // heap is universal - symbolic

@@ -57,6 +57,7 @@ class HeapTransfer {
     Graph post = pre;
     post.addNode(allocNode);
     // TODO add functions for updating heapvar assignments for new node
+    post.heapVarLabels.addNewNodeWithHeapVarAssignment(allocNode, heapVar);
     return pre;
   }
 
