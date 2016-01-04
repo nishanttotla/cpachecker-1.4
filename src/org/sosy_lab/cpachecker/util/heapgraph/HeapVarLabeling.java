@@ -71,4 +71,10 @@ public class HeapVarLabeling {
     }
     return ThreeVal.FALSE;
   }
+
+  // used for var1 := var2
+  public void copyHeapVar(String var1, String var2) {
+    // TODO delete all occurences for var1
+    // TODO iterate through all occurences for var2, and copy those for var 1
+  }
 }

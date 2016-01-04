@@ -52,6 +52,7 @@ public abstract class EdgeEffect {
   }
 
   // instantiate appropriate edge effect depending on operation
+  // TODO handle assume edges
   public static EdgeEffect create(CFAEdge pEdge) {
     CFAEdgeType edgeType = pEdge.getEdgeType();
     // TODO need to handle more cases

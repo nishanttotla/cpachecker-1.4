@@ -62,10 +62,18 @@ class HeapTransfer {
   }
 
   public Graph applyStore(StoreSimpleEdgeEffect storeEffect, Vertex v, Graph pre) {
+    // TODO check that a pointer field is being dereferenced
+    if(true) {
+
+    }
     return pre;
   }
 
   public Graph applyLoad(LoadSimpleEdgeEffect loadEffect, Vertex v, Graph pre) {
+    // TODO check that a pointer field is being dereferenced
+    if(true) {
+
+    }
     return pre;
   }
 

@@ -34,6 +34,7 @@ public class CopySimpleEdgeEffect extends SimpleEdgeEffect {
   public CopySimpleEdgeEffect(CFAEdge pEdge, CExpression lhs, CExpression rhs) {
     super(pEdge);
     opType = OpType.COPY;
+    // TODO call this from EdgeEffect
   }
 
   @Override
