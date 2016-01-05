@@ -50,6 +50,7 @@ public class StmtUtil {
 
   // check if the expression contains a pointer dereference, and return it
   public static Dereference getDereference(CExpression expr) {
+    // TODO set isPointerField when Dereference is created
     if(expr instanceof CIntegerLiteralExpression) {
       return null;
     } else if(expr instanceof CFieldReference) {

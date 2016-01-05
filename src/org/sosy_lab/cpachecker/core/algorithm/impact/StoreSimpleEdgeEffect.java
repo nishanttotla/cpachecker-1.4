@@ -31,8 +31,8 @@ import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaManagerView;
 
 public class StoreSimpleEdgeEffect extends SimpleEdgeEffect {
-  String srcVar;
-  Dereference deref;
+  public String srcVar;
+  public Dereference deref;
 
   public StoreSimpleEdgeEffect(CFAEdge pEdge, CExpression lhs, CExpression rhs) {
     super(pEdge);
@@ -41,6 +41,7 @@ public class StoreSimpleEdgeEffect extends SimpleEdgeEffect {
     if(cstmt instanceof CExpression) {
       // TODO optimization - this call to getDeref already done before
       deref = StmtUtil.getDereference(lhs);
+      // TODO set srcVar from rhs
     }
   }
 

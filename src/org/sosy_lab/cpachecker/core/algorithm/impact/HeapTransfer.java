@@ -23,6 +23,7 @@
  */
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
+import java.util.Set;
 import org.sosy_lab.cpachecker.cfa.ast.c.CExpression;
 import org.sosy_lab.cpachecker.cfa.ast.c.CSimpleDeclaration;
 import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
@@ -58,13 +59,18 @@ class HeapTransfer {
     post.addNode(allocNode);
     // TODO add functions for updating heapvar assignments for new node
     post.heapVarLabels.addNewNodeWithHeapVarAssignment(allocNode, heapVar);
-    return pre;
+    return post;
   }
 
   public Graph applyStore(StoreSimpleEdgeEffect storeEffect, Vertex v, Graph pre) {
-    // TODO check that a pointer field is being dereferenced
-    if(true) {
-
+    Dereference storeDeref = storeEffect.deref;
+    Graph post = pre;
+    if(storeDeref.isPointerField) {
+      Set<Node> nodesSrcVar = post.heapVarLabels.getAllNodesPointedByHeapVar(storeEffect.srcVar, post.nodes);
+      Set<Node> nodesDerefVar = post.heapVarLabels.getAllNodesPointedByHeapVar(storeDeref.varName, post.nodes);
+      // TODO take intersection and finish by updating edges
+    } else {
+      // TODO perhaps update predicate status inside the node
     }
     return pre;
   }

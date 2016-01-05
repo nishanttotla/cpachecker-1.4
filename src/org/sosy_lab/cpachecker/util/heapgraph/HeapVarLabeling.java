@@ -77,4 +77,10 @@ public class HeapVarLabeling {
     // TODO delete all occurences for var1
     // TODO iterate through all occurences for var2, and copy those for var 1
   }
+
+  public Set<Node> getAllNodesPointedByHeapVar(String var, Set<Node> allNodes) {
+    // TODO iterate over all nodes in allNodes and find those that var points to (True or Maybe)
+    Set<Node> pointedNodes = new HashSet<>();
+    return pointedNodes;
+  }
 }
