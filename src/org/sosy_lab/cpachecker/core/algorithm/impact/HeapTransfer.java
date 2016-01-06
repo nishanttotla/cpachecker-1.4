@@ -77,8 +77,12 @@ class HeapTransfer {
 
   public Graph applyLoad(LoadSimpleEdgeEffect loadEffect, Vertex v, Graph pre) {
     // TODO check that a pointer field is being dereferenced
-    if(true) {
+    Dereference loadDeref = loadEffect.deref;
+    Graph post = pre;
+    if(loadDeref.isPointerField) {
 
+    } else {
+      // TODO probably nothing to do here, since data field is being updated
     }
     return pre;
   }
