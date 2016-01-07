@@ -58,10 +58,11 @@ public class HeapVarLabeling {
     // TODO add maybe edges to all nodes
   }
 
+  // adds a new node+heapvar pair with value TRUE
   public void addNewNodeWithHeapVarAssignment(Node node, String var) {
     HVEdge newEdge = new HVEdge(node, var);
-    heapVarLabels.put(newEdge, ThreeVal.TRUE);
     // TODO if any MAYBE edges exist for var, delete them from the map
+    heapVarLabels.put(newEdge, ThreeVal.TRUE);
   }
 
   public ThreeVal getHeapVarAssignmentStatus(Node node, String var) {

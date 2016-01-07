@@ -30,6 +30,9 @@ import org.sosy_lab.cpachecker.cfa.ast.c.CFunctionCallExpression;
 import org.sosy_lab.cpachecker.cfa.ast.c.CFunctionDeclaration;
 import org.sosy_lab.cpachecker.cfa.ast.c.CIdExpression;
 import org.sosy_lab.cpachecker.cfa.ast.c.CIntegerLiteralExpression;
+import org.sosy_lab.cpachecker.cfa.types.c.CComplexType;
+import org.sosy_lab.cpachecker.cfa.types.c.CPointerType;
+import org.sosy_lab.cpachecker.cfa.types.c.CType;
 
 /*
   A bunch of utilities for manipulating heap graphs
@@ -48,16 +51,31 @@ public class StmtUtil {
     return expr.toString();
   }
 
+  // check if a data type is a struct (node) pointer
+  public static boolean isStructPointer(CType type) {
+    // we assume only one type of struct exists in the program
+    if(type instanceof CPointerType) {
+      CPointerType ptrType = (CPointerType)type;
+      if(ptrType.getType() instanceof CComplexType) {
+        CComplexType objType = (CComplexType)ptrType.getType();
+        if(objType.getKind() == CComplexType.ComplexTypeKind.STRUCT) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   // check if the expression contains a pointer dereference, and return it
   public static Dereference getDereference(CExpression expr) {
-    // TODO set isPointerField when Dereference is created
     if(expr instanceof CIntegerLiteralExpression) {
       return null;
     } else if(expr instanceof CFieldReference) {
       CFieldReference fieldExpr = (CFieldReference)expr;
+
       String fieldName = fieldExpr.getFieldName();
       String varName = getVariableName(fieldExpr.getFieldOwner());
-      return new Dereference(fieldName, varName, fieldExpr.getFieldOwner().getExpressionType().equals(fieldExpr.getExpressionType()));
+      return new Dereference(fieldName, varName, isStructPointer(fieldExpr.getExpressionType()));
     } else if(expr instanceof CIdExpression) {
       // reference to a variable, not a dereference
       return null;

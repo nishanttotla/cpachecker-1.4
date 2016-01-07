@@ -31,8 +31,6 @@ import org.sosy_lab.cpachecker.cfa.model.c.CDeclarationEdge;
 import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdge;
 import org.sosy_lab.cpachecker.cfa.model.CFAEdgeType;
-import org.sosy_lab.cpachecker.cfa.types.c.CComplexType;
-import org.sosy_lab.cpachecker.cfa.types.c.CPointerType;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.view.BooleanFormulaManagerView;
 
 public class PassthroughSimpleEdgeEffect extends SimpleEdgeEffect {
@@ -42,16 +40,10 @@ public class PassthroughSimpleEdgeEffect extends SimpleEdgeEffect {
     if(edgeType == CFAEdgeType.DeclarationEdge) {
       CDeclaration dcl = ((CDeclarationEdge) pEdge).getDeclaration();
       System.out.println("Decl type is "+ dcl.getType());
-      if(dcl.getType() instanceof CPointerType) {
-        CPointerType ptrType = (CPointerType)dcl.getType();
-        if(ptrType.getType() instanceof CComplexType) {
-          CComplexType objType = (CComplexType)ptrType.getType();
-          if(objType.getKind() == CComplexType.ComplexTypeKind.STRUCT) {
-            // we assume only one struct exists in the program
-            // when a pointer to that struct is found in a declaration, we need to keep track of it
-            System.out.println("FOUND POINTER TO STRUCT");
-          }
-        }
+      if(StmtUtil.isStructPointer(dcl.getType())) {
+        // we assume only one struct exists in the program
+        // when a pointer to that struct is found in a declaration, we need to keep track of it
+        System.out.println("FOUND POINTER TO STRUCT");
       }
     }
   }
