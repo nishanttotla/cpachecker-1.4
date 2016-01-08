@@ -25,6 +25,8 @@ package org.sosy_lab.cpachecker.util.heapgraph;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import org.sosy_lab.cpachecker.util.heapgraph.Graph.ThreeVal;
 
@@ -61,7 +63,15 @@ public class HeapVarLabeling {
   // adds a new node+heapvar pair with value TRUE
   public void addNewNodeWithHeapVarAssignment(Node node, String var) {
     HVEdge newEdge = new HVEdge(node, var);
-    // TODO if any MAYBE edges exist for var, delete them from the map
+    // Src: http://stackoverflow.com/questions/6092642/how-to-remove-a-key-from-hashmap-while-iterating-over-it
+    // First remove existing entries for var
+    Iterator< Map.Entry<HVEdge, ThreeVal> > iter = heapVarLabels.entrySet().iterator();
+    while(iter.hasNext()) {
+      Map.Entry<HVEdge, ThreeVal> entry = iter.next();
+      if(entry.getValue() == ThreeVal.TRUE || entry.getValue() == ThreeVal.MAYBE) {
+        iter.remove();
+      }
+    }
     heapVarLabels.put(newEdge, ThreeVal.TRUE);
   }
 

@@ -56,9 +56,9 @@ class HeapTransfer {
     String heapVar = allocEffect.getHeapVar();
     Node allocNode = new Node(pre.nodeFormula, true); // new node is a root
     Graph post = pre;
-    // post.addNode(allocNode);
-    // // TODO add functions for updating heapvar assignments for new node
-    // post.heapVarLabels.addNewNodeWithHeapVarAssignment(allocNode, heapVar);
+    post.addNode(allocNode);
+    // TODO add functions for updating heapvar assignments for new node
+    post.heapVarLabels.addNewNodeWithHeapVarAssignment(allocNode, heapVar);
     return post;
   }
 
