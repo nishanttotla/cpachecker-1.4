@@ -25,6 +25,7 @@ package org.sosy_lab.cpachecker.util.heapgraph;
 
 import java.util.HashMap;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.TreeSet;
 import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 
@@ -47,7 +48,7 @@ public class Graph {
   public BooleanFormula nodeFormula;
 
   public Set<Node> nodes;
-  public HashMap<Edge, ThreeVal> edges; // E: N x Fields x N -> B3. For optimality, only store TRUE/MAYBE edges
+  public Set<Edge> edges; // E: N x Fields x N -> B3. For optimality, only store TRUE/MAYBE edges
   public HeapVarLabeling heapVarLabels; // V: N x Vars_H -> B3
 
   private boolean isUniversal; // heap is universal - symbolic
@@ -55,7 +56,7 @@ public class Graph {
 
   public Graph() {
     this.nodes = new TreeSet<>();
-    this.edges = new HashMap<>();
+    this.edges = new HashSet<>();
     this.isUniversal = false;
     this.isEmpty = false;
   }
