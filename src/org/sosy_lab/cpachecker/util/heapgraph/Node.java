@@ -32,7 +32,7 @@ public class Node {
   public ThreeVal predLabel;
 
   public boolean isRoot;
-  public boolean summary;
+  public boolean summary; // TODO these properties aren't being updated right now
 
   public Node(BooleanFormula predicate) {
     this.predicate = predicate;

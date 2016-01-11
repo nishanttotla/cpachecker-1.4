@@ -75,8 +75,9 @@ public class Graph {
     return empt;
   }
 
-  // graph editing functions
+  /****** graph editing functions *****/
   public void addNode(Node n) {
     // TODO write this
+    nodes.add(n);
   }
 }
