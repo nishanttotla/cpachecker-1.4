@@ -90,8 +90,13 @@ public class HeapVarLabeling {
   }
 
   public Set<Node> getAllNodesPointedByHeapVar(String var) {
-    // TODO iterate over all HVEdges and find nodes that var points to (True or Maybe)
+    // Iterate over all HVEdges and find nodes that var points to (True or Maybe)
     Set<Node> pointedNodes = new HashSet<>();
+    for(Map.Entry<HVEdge, ThreeVal> entry : heapVarLabels.entrySet()) {
+      if(entry.getKey().heapVar.equals(var) && (entry.getValue() == ThreeVal.TRUE || entry.getValue() == ThreeVal.MAYBE)) {
+        pointedNodes.add(entry.getKey().node);
+      }
+    }
     return pointedNodes;
   }
 }

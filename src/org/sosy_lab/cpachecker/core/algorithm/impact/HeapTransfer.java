@@ -62,6 +62,15 @@ class HeapTransfer {
     return post;
   }
 
+  /*
+   * STORE (v1->n := v2)
+   * N' = N
+   * V' = V
+   * E' updates E as follows:
+   * Let S = {n ∈ N : V(v1,n) = True or V(v1,n) = Maybe}
+   * Let T = {n ∈ N : V(v2,n) = True or V(v2,n) = Maybe}
+   * Then E'(s,f,t) = Maybe, where s ∈ S, t ∈ T (and True if both S and T are singletons)
+   */
   public Graph applyStore(StoreSimpleEdgeEffect storeEffect, Vertex v, Graph pre) {
     Dereference storeDeref = storeEffect.deref;
     Graph post = pre;
@@ -72,7 +81,7 @@ class HeapTransfer {
     } else {
       // TODO perhaps update predicate status inside the node
     }
-    return pre;
+    return post;
   }
 
   public Graph applyLoad(LoadSimpleEdgeEffect loadEffect, Vertex v, Graph pre) {
@@ -84,7 +93,7 @@ class HeapTransfer {
     } else {
       // TODO probably nothing to do here, since data field is being updated
     }
-    return pre;
+    return post;
   }
 
   public Graph applyCopy(CopySimpleEdgeEffect copyEffect, Vertex v, Graph pre) {
