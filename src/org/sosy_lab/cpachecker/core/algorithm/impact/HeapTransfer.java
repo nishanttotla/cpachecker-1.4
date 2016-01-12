@@ -94,11 +94,10 @@ class HeapTransfer {
    * E' = E
    */
   public Graph applyLoad(LoadSimpleEdgeEffect loadEffect, Vertex v, Graph pre) {
-    // TODO check that a pointer field is being dereferenced
     Dereference loadDeref = loadEffect.deref;
     Graph post = pre;
     if(loadDeref.isPointerField) {
-
+      Set<Node> nodesDestVar = post.heapVarLabels.getAllNodesPointedByHeapVar(loadEffect.varLhs);
     } else {
       // TODO probably nothing to do here, since data field is being updated
     }
@@ -112,15 +111,18 @@ class HeapTransfer {
    * E' = E
    */
   public Graph applyCopy(CopySimpleEdgeEffect copyEffect, Vertex v, Graph pre) {
-    return pre;
+    Graph post = pre;
+    return post;
   }
 
   public Graph applyDataOp(DataOpSimpleEdgeEffect dataOpEffect, Vertex v, Graph pre) {
-    return pre;
+    Graph post = pre;
+    return post;
   }
 
   public Graph applyPassthrough(PassthroughSimpleEdgeEffect passthroughEffect, Vertex v, Graph pre) {
-    return pre;
+    Graph post = pre;
+    return post;
   }
 
   public Graph applyDeclaration(CSimpleDeclaration decl, Graph pre) {
