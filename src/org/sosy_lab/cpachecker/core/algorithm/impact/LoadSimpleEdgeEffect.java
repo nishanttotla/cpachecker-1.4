@@ -24,6 +24,7 @@
 package org.sosy_lab.cpachecker.core.algorithm.impact;
 
 import org.sosy_lab.cpachecker.cfa.ast.c.CExpression;
+import org.sosy_lab.cpachecker.cfa.ast.c.CIdExpression;
 import org.sosy_lab.cpachecker.cfa.ast.c.CLeftHandSide;
 import org.sosy_lab.cpachecker.cfa.ast.c.CStatement;
 import org.sosy_lab.cpachecker.cfa.model.c.CStatementEdge;
@@ -37,11 +38,14 @@ public class LoadSimpleEdgeEffect extends SimpleEdgeEffect {
   public LoadSimpleEdgeEffect(CStatementEdge pEdge, CExpression lhs, CExpression rhs) {
     super(pEdge);
     opType = OpType.LOAD;
-    // TODO varLhs must be assigned
     CStatement cstmt = ((CStatementEdge)pEdge).getStatement();
     if(cstmt instanceof CExpression) {
       // TODO optimization - this call to getDeref already done before
       deref = StmtUtil.getDereference(rhs);
+      if(deref.isPointerField) {
+        // at this point, lhs should be a single heap variable, since program type checked
+        varLhs = ((CIdExpression)lhs).getName();
+      }
     }
   }
 

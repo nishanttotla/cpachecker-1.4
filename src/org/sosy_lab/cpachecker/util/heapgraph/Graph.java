@@ -75,9 +75,22 @@ public class Graph {
     return empt;
   }
 
-  /****** graph editing functions *****/
+  /****** graph editing and access functions *****/
   public void addNode(Node n) {
-    // TODO write this
+    // TODO write this fully
     nodes.add(n);
+  }
+
+  public Set<Node> getAllNodesPointedByNodeSet(Set<Node> nodeSet) {
+    Set<Node> pointedNodes = new HashSet<>();
+    for(Edge e : edges) {
+      for(Node n : nodeSet) {
+        // checking for status is redundant since we're not storing FALSE edges
+        if(e.source == n && (e.status == ThreeVal.TRUE || e.status == ThreeVal.MAYBE)) {
+          pointedNodes.add(e.destination);
+        }
+      }
+    }
+    return pointedNodes;
   }
 }

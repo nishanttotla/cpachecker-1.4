@@ -75,8 +75,8 @@ class HeapTransfer {
     Dereference storeDeref = storeEffect.deref;
     Graph post = pre;
     if(storeDeref.isPointerField) {
-      Set<Node> nodesSrcVar = post.heapVarLabels.getAllNodesPointedByHeapVar(storeEffect.srcVar);
-      Set<Node> nodesDerefVar = post.heapVarLabels.getAllNodesPointedByHeapVar(storeDeref.varName);
+      Set<Node> nodesSrcVar = post.heapVarLabels.getAllNodesPointedByHeapVar(storeEffect.srcVar); //v2
+      Set<Node> nodesDerefVar = post.heapVarLabels.getAllNodesPointedByHeapVar(storeDeref.varName); // v1
       // TODO take intersection and finish by updating edges
     } else {
       // TODO perhaps update predicate status inside the node
@@ -97,7 +97,8 @@ class HeapTransfer {
     Dereference loadDeref = loadEffect.deref;
     Graph post = pre;
     if(loadDeref.isPointerField) {
-      Set<Node> nodesDestVar = post.heapVarLabels.getAllNodesPointedByHeapVar(loadEffect.varLhs);
+      Set<Node> nodesDerefVar = post.heapVarLabels.getAllNodesPointedByHeapVar(loadDeref.varName); // v2
+      Set<Node> nodesDerefPointer = post.getAllNodesPointedByNodeSet(nodesDerefVar); // v2->n
     } else {
       // TODO probably nothing to do here, since data field is being updated
     }
