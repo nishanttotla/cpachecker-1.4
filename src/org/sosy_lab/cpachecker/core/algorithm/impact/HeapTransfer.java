@@ -84,6 +84,15 @@ class HeapTransfer {
     return post;
   }
 
+  /*
+   * LOAD (v1 := v2->n)
+   * N' = N
+   * V' updates V as follows:
+   * Let S = {n ∈ N : V(v2,n) = True or V(v2,n) = Maybe}
+   * Let T = {n ∈ N : E(s,f,n) = True or E(s,f,n) = Maybe where s ∈ S}
+   * if |T| = {t} (singleton), then V'(v1,t) = True, otherwise V'(v1,t) = Maybe for all t ∈ T
+   * E' = E
+   */
   public Graph applyLoad(LoadSimpleEdgeEffect loadEffect, Vertex v, Graph pre) {
     // TODO check that a pointer field is being dereferenced
     Dereference loadDeref = loadEffect.deref;
@@ -96,6 +105,12 @@ class HeapTransfer {
     return post;
   }
 
+  /*
+   * COPY (v1 := v2)
+   * N' = N
+   * V' updates V so that for each node n ∈ N, V'(v1, n) = V(v2, n)
+   * E' = E
+   */
   public Graph applyCopy(CopySimpleEdgeEffect copyEffect, Vertex v, Graph pre) {
     return pre;
   }
