@@ -78,6 +78,7 @@ public class Graph {
   /****** graph editing and access functions *****/
   public void addNode(Node n) {
     // TODO write this fully
+    n.nodeId = nodes.size()+1;
     nodes.add(n);
   }
 

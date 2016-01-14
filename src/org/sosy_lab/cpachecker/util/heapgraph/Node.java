@@ -28,6 +28,7 @@ import org.sosy_lab.cpachecker.util.predicates.interfaces.BooleanFormula;
 
 // Define node for a heap graph
 public class Node {
+  public int nodeId; // used for hashing and equality checks
   public BooleanFormula predicate; // TODO this predicate should ideally be uniform across nodes
   public ThreeVal predLabel;
 
