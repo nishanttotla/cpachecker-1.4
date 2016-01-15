@@ -55,4 +55,8 @@ public class Node {
   public void setAsNotSummary() {
     this.summary = false;
   }
+
+  public boolean equals(Node n) {
+    return nodeId == n.nodeId && isRoot == n.isRoot && summary == n.summary;
+  }
 }
