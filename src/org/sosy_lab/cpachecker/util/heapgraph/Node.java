@@ -59,4 +59,8 @@ public class Node {
   public boolean equals(Node n) {
     return nodeId == n.nodeId && isRoot == n.isRoot && summary == n.summary;
   }
+
+  public int hashCode() {
+    return nodeId;
+  }
 }
