@@ -83,6 +83,7 @@ public abstract class EdgeEffect {
       CFunctionCallAssignmentStatement funcAssgn = (CFunctionCallAssignmentStatement)stmt;
       String funcName = StmtUtil.getFunction(funcAssgn.getRightHandSide());
       if(funcName == "malloc") {
+        // alloc (malloc function call)
         return new AllocSimpleEdgeEffect(pEdge);
       }
     } else if(stmt instanceof CExpressionAssignmentStatement) {

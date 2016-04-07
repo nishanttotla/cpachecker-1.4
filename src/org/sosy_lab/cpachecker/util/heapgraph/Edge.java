@@ -31,6 +31,8 @@ public class Edge {
   public Node source;
   public Node destination;
   public String field; // name of the outgoing field from source
+  // currently rest of the code assumes a single field, and will not work if edges
+  // with multiple field types are present
 
   public Edge(Node src, Node dst, String field, ThreeVal st) {
     this.status = st;
